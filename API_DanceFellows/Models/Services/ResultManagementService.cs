@@ -1,11 +1,12 @@
 ﻿using API_DanceFellows.Data;
+using API_DanceFellows.Models.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace API_DanceFellows.Models.Services
 {
-    public class ResultManagementService
+    public class ResultManagementService : IResultManager
     {
         /// <summary>
         /// Standard setup for repository design pattern and dependency injection - see other services for details

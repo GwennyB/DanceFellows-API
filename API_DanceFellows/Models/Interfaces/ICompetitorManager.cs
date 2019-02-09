@@ -21,10 +21,10 @@ namespace API_DanceFellows.Models.Interfaces
         void UpdateCompetitor(Competitor competitor);
 
         //Get a competitor by internal ID
-        Task<string> DeleteCompetitor(int id);
+        Task DeleteCompetitor(int id);
 
         //Save changes
-        Task<string> SaveThis();
+        Task SaveThis();
     }
 }
 

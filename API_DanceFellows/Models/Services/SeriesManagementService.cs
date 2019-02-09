@@ -1,11 +1,12 @@
 ﻿using API_DanceFellows.Data;
+using API_DanceFellows.Models.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace API_DanceFellows.Models.Services
 {
-    public class SeriesManagementService
+    public class SeriesManagementService : ISeriesManager
     {
         /// <summary>
         /// Standard setup for DI and repository design patterns - see CompetitorManagementService for more detail

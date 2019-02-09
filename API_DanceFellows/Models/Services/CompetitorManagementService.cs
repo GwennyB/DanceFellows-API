@@ -1,4 +1,5 @@
 ﻿using API_DanceFellows.Data;
+using API_DanceFellows.Models.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace API_DanceFellows.Models.Services
 {
-    public class CompetitorManagementService
+    public class CompetitorManagementService : ICompetitorManager
     {
 
         /// <summary>

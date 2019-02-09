@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿
+
+using API_DanceFellows.Data;
+using API_DanceFellows.Models.Interfaces;
+using API_DanceFellows.Models.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -36,9 +35,8 @@ namespace API_DanceFellows
             services.AddMvc();
 
             services.AddDbContext<API_DanceFellowsDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("ProductionConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            // TODO: Register DB interface & service
             services.AddScoped<ICompetitorManager, CompetitorManagementService>();
             services.AddScoped<IEventManager, EventManagementService>();
             services.AddScoped<ICompetitionManager, CompetitionManagementService>();

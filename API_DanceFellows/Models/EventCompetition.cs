@@ -18,7 +18,6 @@ namespace API_DanceFellows.Models
 
         // Navigation Properties
         public Event Event { get; set; }
-        //public Result Result { get; set; }
     }
 
     public enum CompType

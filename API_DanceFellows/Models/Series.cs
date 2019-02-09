@@ -13,7 +13,5 @@ namespace API_DanceFellows.Models
 
         public ICollection<Event> SeriesEvents { get; set; }
 
-        // Navigation Properties
-
     }
 }

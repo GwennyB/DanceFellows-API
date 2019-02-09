@@ -17,7 +17,6 @@ namespace API_DanceFellows.Models
         public int SeriesID { get; set; }
 
         // Navigation Properties
-        //public Series Series { get; set; }
         public Series Series { get; set; }
     }
 }

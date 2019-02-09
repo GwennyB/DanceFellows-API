@@ -8,7 +8,6 @@ namespace API_DanceFellows.Models
 {
     public class Result
     {
-        // TODO: 'Placement' is for implementation in later module
         public Placement Placement { get; set; }
         public Role Role { get; set; }
         public int ScoreChief { get; set; }
@@ -26,7 +25,6 @@ namespace API_DanceFellows.Models
         // Navigation Properties
         public Competitor Competitor { get; set; }
         public EventCompetition EventCompetition { get; set; }
-        //public object Placement { get; internal set; }
     }
 
     public enum Role

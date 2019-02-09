@@ -14,8 +14,6 @@ namespace API_DanceFellows.Models.Interfaces
         //Get a result via composite key of competition instance in an event and a competitor's ID
         Task<Result> GetResult(int eventCompetitionId, int competitorId);
 
-        //Get all results
-        Task<List<Result>> GetAllResults();
 
         //Update a specific result (used in adding or changing scoring)
         Task<Result> UpdateResult(Result result);
@@ -29,6 +27,12 @@ namespace API_DanceFellows.Models.Interfaces
         // Get single competitor by WSDC_ID
         Task<Competitor> GetCompetitor(int id);
 
+
+        
+        // likely don't need this
+        
+        ////Get all results
+        //Task<List<Result>> GetAllResults();
     }
 }
 
