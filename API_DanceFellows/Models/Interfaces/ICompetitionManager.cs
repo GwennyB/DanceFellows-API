@@ -11,11 +11,16 @@ namespace API_DanceFellows.Models.Interfaces
         //Create a new competition
         Task CreateCompetition(EventCompetition competition);
 
+
+
+
+        //TODO: don't need anything below this point
+
         //Get a competition by its composite key
-        Task<EventCompetition> GetCompetition(int id);
+        //Task<EventCompetition> GetCompetition(int id);
 
         //Get all competitions (presumably for filtering)
-        Task<List<EventCompetition>> GetAllCompetitions();
+        //Task<List<EventCompetition>> GetAllCompetitions();
     }
 }
 

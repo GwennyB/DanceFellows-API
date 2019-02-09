@@ -38,25 +38,29 @@ namespace API_DanceFellows.Models.Services
         }
 
         /// <summary>
-        /// Gets a list of all competitions from all recorded events.
-        /// </summary>
-        /// <returns>A list of competitions.</returns>
-        public async Task<List<EventCompetition>> GetAllCompetitions()
-        {
-            return await ReadOnlyContext.EventCompetitions.ToListAsync();
-        }
-
-        /// <summary>
         /// Gets a specific competition, given an event, the type of competition, and the level of the competition.
         /// </summary>
         /// <param name="eventId">The id of the event that the competition took place at.</param>
         /// <param name="compType">The type of competition being retrieved.</param>
         /// <param name="level">The level of competition being retrieved.</param>
         /// <returns>If it exists, the first competition matching the parameteres entered.</returns>
-        public async Task<EventCompetition> GetCompetition(int id)
+        private async Task<EventCompetition> GetCompetition(int id)
         {
             return await ReadOnlyContext.EventCompetitions.FirstOrDefaultAsync(comp => comp.ID == id);
         }
 
+
+
+
+        // TODO: don't need anything below this point
+
+        ///// <summary>
+        ///// Gets a list of all competitions from all recorded events.
+        ///// </summary>
+        ///// <returns>A list of competitions.</returns>
+        //public async Task<List<EventCompetition>> GetAllCompetitions()
+        //{
+        //    return await ReadOnlyContext.EventCompetitions.ToListAsync();
+        //}
     }
 }

@@ -1,6 +1,7 @@
 ﻿using API_DanceFellows.Data;
 using API_DanceFellows.Models.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -17,15 +18,36 @@ namespace API_DanceFellows.Models.Services
             ReadOnlyContext = context;
         }
 
+
         /// <summary>
-        /// Returns the result specific to the competition and competitor ids provided.
+        /// HELPER: uses foreign object contents to build up a Result record
         /// </summary>
-        /// <param name="eventCompetitionId">The id for the competition whose result is to be returned from.</param>
-        /// <param name="competitorId">The id for the competitor whose result is to be returned.</param>
-        /// <returns>A single result corresponding to the competition and competitor provided, if it exists.</returns>
-        public async Task<Result> GetResult(int eventCompetitionId, int competitorId)
+        /// <param name="data"> package of foreign objects to de/re-structure </param>
+        /// <returns> result record </returns>
+        public async Task<Result> BuildResultObject(List<object> data)
         {
-            return await ReadOnlyContext.Results.FirstOrDefaultAsync(res => res.EventCompetitionID == eventCompetitionId && res.CompetitorID == competitorId);
+            JObject comp = JObject.Parse(data[0].ToString());
+            JObject participant = JObject.Parse(data[1].ToString());
+            JObject compreg = JObject.Parse(data[2].ToString());
+            Result result = new Result();
+            result.CompetitorID = (int)participant["WSC_ID"];
+            CompType a = (CompType)(int)comp["CompType"];
+            Level b = (Level)(int)comp["Level"];
+            int c = (int)compreg["EventID"];
+            EventCompetition d = await GetCompetition(a, b, c);
+            Competitor e = await GetCompetitor(result.CompetitorID);
+            result.EventCompetition = d;
+            result.EventCompetitionID = d.ID;
+            result.Role = (Role)((int)compreg["Role"]);
+            result.Placement = (Placement)((int)compreg["Placement"]);
+            result.ScoreChief = (int)compreg["ChiefJudgeScore"];
+            result.ScoreOne = (int)compreg["JudgeOneScore"];
+            result.ScoreTwo = (int)compreg["JudgeTwoScore"];
+            result.ScoreThree = (int)compreg["JudgeThreeScore"];
+            result.ScoreFour = (int)compreg["JudgeFourScore"];
+            result.ScoreFive = (int)compreg["JudgeFiveScore"];
+            result.ScoreSix = (int)compreg["JudgeSixScore"];
+            return result;
         }
 
         /// <summary>
@@ -73,6 +95,17 @@ namespace API_DanceFellows.Models.Services
         }
 
         /// <summary>
+        /// Returns the result specific to the competition and competitor ids provided.
+        /// </summary>
+        /// <param name="eventCompetitionId">The id for the competition whose result is to be returned from.</param>
+        /// <param name="competitorId">The id for the competitor whose result is to be returned.</param>
+        /// <returns>A single result corresponding to the competition and competitor provided, if it exists.</returns>
+        public async Task<Result> GetResult(int eventCompetitionId, int competitorId)
+        {
+            return await ReadOnlyContext.Results.FirstOrDefaultAsync(res => res.EventCompetitionID == eventCompetitionId && res.CompetitorID == competitorId);
+        }
+
+        /// <summary>
         /// Given the id of a competition at an event and the id of a competitor, checks if that competitor was registered in the competition, deletes the registration of the competitor, and returns the deleted registration. 
         /// </summary>
         /// <param name="eventCompetitionID">The event to deregister from.</param>
@@ -86,30 +119,29 @@ namespace API_DanceFellows.Models.Services
             return await ReadOnlyContext.Results.FirstOrDefaultAsync(res => res.EventCompetitionID == eventCompetitionID && res.CompetitorID == competitorId);
         }
 
+
+
         /// <summary>
-        /// HELPER: locates a single Competition record and returns it
-        /// searches by CompType, Level, and EventID since web app lacks visibility of primary key for this table
+        /// HELPER: Get a single competition using comp parameters
         /// </summary>
-        /// <param name="compType"> CompType for record to locate </param>
-        /// <param name="level"> Level for record to locate </param>
-        /// <param name="eventID"> EventID for event hosting this comp </param>
-        /// <returns> located EventCompetition record, or null if not found </returns>
-        public async Task<EventCompetition> GetCompetition(CompType compType, Level level, int eventID)
+        /// <param name="compType"> CompType (enum) </param>
+        /// <param name="level"> Level (enum) </param>
+        /// <param name="eventID"> EventID of associated event </param>
+        /// <returns></returns>
+        private async Task<EventCompetition> GetCompetition(CompType compType, Level level, int eventID)
         {
             return await ReadOnlyContext.EventCompetitions.FirstOrDefaultAsync(ec => ec.CompType == compType && ec.Level == level && ec.EventID == eventID);
         }
 
         /// <summary>
-        /// HELPER: locates a single Competitor record and returns it
+        /// HELPER: get a single competitor from WSDC_ID for local use
         /// </summary>
         /// <param name="id"> WSDC_ID of competitor to locate </param>
-        /// <returns> Competitor object if found, or null if not </returns>
-        public async Task<Competitor> GetCompetitor(int id)
+        /// <returns> competitor if found, null otherwise </returns>
+        private async Task<Competitor> GetCompetitor(int id)
         {
             return await ReadOnlyContext.Competitors.FirstOrDefaultAsync(c => c.WSDC_ID == id);
         }
-
-
 
 
 
@@ -130,5 +162,12 @@ namespace API_DanceFellows.Models.Services
         //}
 
 
+
+
+
+
+
+
     }
+
 }

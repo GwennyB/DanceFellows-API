@@ -34,6 +34,7 @@ namespace API_DanceFellows
         {
             services.AddMvc();
 
+            // TODO: Update connection to Prod
             services.AddDbContext<API_DanceFellowsDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -71,7 +72,7 @@ namespace API_DanceFellows
             {
                 routes.MapRoute(
                 name: "default",
-                template: "{controller=Home}/{action=Index}/{id?}");
+                template: "{controller=Competitors}/{action=Index}/{id?}");
             });
         }
     }

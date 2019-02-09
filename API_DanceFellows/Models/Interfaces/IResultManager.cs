@@ -14,25 +14,27 @@ namespace API_DanceFellows.Models.Interfaces
         //Get a result via composite key of competition instance in an event and a competitor's ID
         Task<Result> GetResult(int eventCompetitionId, int competitorId);
 
-
         //Update a specific result (used in adding or changing scoring)
         Task<Result> UpdateResult(Result result);
 
         //Delete a result (used in unregistering a competitor)
         Task<Result> DeleteResult(int eventCompetitionID, int competitorId);
-
-        // Get competitionID given Comptype, Level, and EventID
-        Task<EventCompetition> GetCompetition(CompType compType, Level level, int eventID);
-
-        // Get single competitor by WSDC_ID
-        Task<Competitor> GetCompetitor(int id);
-
-
         
-        // likely don't need this
+        // use foreign object contents to build up Result record
+        Task<Result> BuildResultObject(List<object> data);
+
+
+
+
+        //// Get competitionID given Comptype, Level, and EventID
+        //Task<EventCompetition> GetCompetition(CompType compType, Level level, int eventID);
         
+        //Task<Competitor> GetCompetitor(int id);
+
+
         ////Get all results
         //Task<List<Result>> GetAllResults();
+
     }
 }
 
