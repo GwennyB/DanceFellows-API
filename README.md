@@ -23,23 +23,22 @@ This route returns data for a single competitor, if present in the database. The
 This route creates a new registration record linking a competitor to a specific competition. It accepts a list of 3 objects containing these required key/value pairs (at minimum - other data will be ignored):
 
   1ST OBJECT (list index 0):
-    "CompType" <int> - competition type (enum: 0=Jack & Jill, 1=Strictly, 2=Classic, 3=Showcase, 4=Rising Star)
-    "Level" <int> - competition level (enum: 0=Newcomer, 1=Novice, 2=Intermediate, 3=Advanced, 4=All-Star, 5=Champion)
+    - "CompType" <int> - competition type (enum: 0=Jack & Jill, 1=Strictly, 2=Classic, 3=Showcase, 4=Rising Star)
+    - "Level" <int> - competition level (enum: 0=Newcomer, 1=Novice, 2=Intermediate, 3=Advanced, 4=All-Star, 5=Champion)
   2ND OBJECT (list index 1):
-    "WSC_ID" <int> - competitor's WSDC ID
+    - "WSC_ID" <int> - competitor's WSDC ID
   3RD OBJECT (list index 2):
-    "EventID" <int> - ID issued to client by API to enable use of API's results tracking resources
-    "Role" <int> - competitor's dance role (enum: 0=Lead, 1=Follow)
-    "Placement" <int> - final placement (enum: 0=Point finalist, 1=5th place, 2=4th place, 3=3rd place, 4=2nd place, 5=1st place )
-    "ChiefJudgeScore" <int> - raw score by Chief Judge
-    "JudgeOneScore" <int> - raw score
-    "JudgeTwoScore" <int> - raw score
-    "JudgeThreeScore" <int> - raw score
-    "JudgeFourScore" <int> - raw score
-    "JudgeFiveScore" <int> - raw score
-    "JudgeSixScore" <int> - raw score
-  POST
-![Create Competition Registration/Score Record](assets/Create-Result.PNG)
+    - "EventID" <int> - ID issued to client by API to enable use of API's results tracking resources
+    - "Role" <int> - competitor's dance role (enum: 0=Lead, 1=Follow)
+    - "Placement" <int> - final placement (enum: 0=Point finalist, 1=5th place, 2=4th place, 3=3rd place, 4=2nd place, 5=1st place )
+    - "ChiefJudgeScore" <int> - raw score by Chief Judge
+    - "JudgeOneScore" <int> - raw score
+    - "JudgeTwoScore" <int> - raw score
+    - "JudgeThreeScore" <int> - raw score
+    - "JudgeFourScore" <int> - raw score
+    - "JudgeFiveScore" <int> - raw score
+    - "JudgeSixScore" <int> - raw score
+  ![Create Competition Registration/Score Record](assets/Create-Result.PNG)
 
 ### PUT /Results/Update
 This route updates an existing registration record linking a competitor to a specific competition. 'Existing' is determined by a composite of WSC_ID, CompType, Level, and EventID). It accepts the same data package as /Results/Create.
