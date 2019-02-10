@@ -522,5 +522,76 @@ namespace API_UnitTests
             eventCompetition.Results = results;
             Assert.True(eventCompetition.Results.Contains(result));
         }
+        //And finally Series
+        [Fact]
+        public void CanGetIDInSeries()
+        {
+            Series series = new Series();
+            series.ID = 1;
+            Assert.True(series.ID == 1);
+        }
+        [Fact]
+        public void CanSetIDInSeries()
+        {
+            Series series = new Series();
+            series.ID = 2;
+            series.ID = 1;
+            Assert.True(series.ID == 1);
+        }
+        [Fact]
+        public void CanGetNameInSeries()
+        {
+            Series series = new Series();
+            series.Name = "Foo";
+            Assert.True(series.Name == "Foo");
+        }
+        [Fact]
+        public void CanSetNameInSeries()
+        {
+            Series series = new Series();
+            series.Name = "Bar";
+            series.Name = "Foo";
+            Assert.True(series.Name == "Foo");
+        }
+        [Fact]
+        public void CanGetLocationInSeries()
+        {
+            Series series = new Series();
+            series.Location = "Foo";
+            Assert.True(series.Location == "Foo");
+        }
+        [Fact]
+        public void CanSetLocationInSeries()
+        {
+            Series series = new Series();
+            series.Location = "Bar";
+            series.Location = "Foo";
+            Assert.True(series.Location == "Foo");
+        }
+        [Fact]
+        public void CanGetEventFromSeries()
+        {
+            Series series = new Series();
+            List<Event> seriesEvents = new List<Event>();
+            Event newEvent = new Event();
+            newEvent.ID = 1;
+            seriesEvents.Add(newEvent);
+            series.SeriesEvents = seriesEvents;
+            Assert.True(series.SeriesEvents.Contains(newEvent));
+        }
+        [Fact]
+        public void CanSetEventFromSeries()
+        {
+            Series series = new Series();
+            List<Event> seriesEvents = new List<Event>();
+            Event newEvent = new Event();
+            newEvent.ID = 1;
+            seriesEvents.Add(newEvent);
+            series.SeriesEvents = seriesEvents;
+            newEvent.ID = 2;
+            seriesEvents.Add(newEvent);
+            series.SeriesEvents = seriesEvents;
+            Assert.True(series.SeriesEvents.Contains(newEvent));
+        }
     }
 }
