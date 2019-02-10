@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace API_DanceFellows.Controllers
 {
     public class CompetitorsController : Controller
@@ -18,8 +19,8 @@ namespace API_DanceFellows.Controllers
             _context = context;
         }
 
-
-        [HttpGet]
+        [HttpGet()]
+        [Route("Index")]
         public ActionResult<string> Index()
         {
             return "Hello World";
@@ -30,7 +31,8 @@ namespace API_DanceFellows.Controllers
         /// With an id specificed, hitting the Get route on Competitors should return the competitor with that id we have stored in the database. 
         /// </summary>
         /// <returns>If a competitor with the given id exists, return the competitor object with a 200 status code. If it does not, return a null object with a 400 status code.</returns>
-        [HttpGet]
+        [HttpGet("{id}")]
+        [Route("GetCompetitor")]
         // removed ("id") to make this work
         public async Task<Competitor> GetCompetitor(int id)
         {
@@ -52,6 +54,7 @@ namespace API_DanceFellows.Controllers
         /// </summary>
         /// <returns> completion report string </returns>
         [HttpGet]
+        [Route("RefreshAll")]
         public async Task<string> RefreshAll()
         {
             int count = await _context.RefreshAll();

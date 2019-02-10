@@ -1,6 +1,4 @@
-﻿
-
-using API_DanceFellows.Data;
+﻿using API_DanceFellows.Data;
 using API_DanceFellows.Models.Interfaces;
 using API_DanceFellows.Models.Services;
 using Microsoft.AspNetCore.Builder;
@@ -8,6 +6,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using NJsonSchema;
+using NSwag.AspNetCore;
+
 
 namespace API_DanceFellows
 {
@@ -33,16 +34,35 @@ namespace API_DanceFellows
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddMvcCore().AddApiExplorer();
+            services.AddSwaggerDocument(config =>
+            {
+                config.PostProcess = document =>
+                {
+                    document.Info.Version = "v1";
+                    document.Info.Title = "Dance Fellows API";
+                    document.Info.Description = "A source for West Coast Swing competitors and competition data";
+                    document.Info.TermsOfService = "N/A";
+                    document.Info.Contact = new NSwag.SwaggerContact
+                    {
+                        Name = "Dance Fellows",
+                        Email = string.Empty,
+                        Url = "https://github.com/GwennyB/DanceFellows-API"
+                    };
+                    document.Info.License = new NSwag.SwaggerLicense
+                    {
+                        Name = "GNU General Public License v3.0",
+                        Url = "https://github.com/GwennyB/DanceFellows-API/blob/master/LICENSE"
+                    };
+                };
+            });
 
-            // TODO: Update connection to Prod
             services.AddDbContext<API_DanceFellowsDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("ProductionConnection")));
 
             services.AddScoped<ICompetitorManager, CompetitorManagementService>();
-            //services.AddScoped<IEventManager, EventManagementService>();
-            //services.AddScoped<ICompetitionManager, CompetitionManagementService>();
             services.AddScoped<IResultManager, ResultManagementService>();
-            //services.AddScoped<ISeriesManager, SeriesManagementService>();
+
         }
 
         /// <summary>
@@ -61,7 +81,11 @@ namespace API_DanceFellows
                 app.UseHsts();
             }
 
-            // TODO: serve static files
+            app.UseStaticFiles();
+
+            app.UseSwagger();
+            app.UseSwaggerUi3();
+
 
             app.UseHttpsRedirection();
             app.UseMvc();
