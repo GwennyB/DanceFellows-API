@@ -13,9 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="API_DanceFellows">
-      <HintPath>..\API_DanceFellows\bin\Debug\netcoreapp2.2\API_DanceFellows.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\API_DanceFellows\API_DanceFellows.csproj" />
   </ItemGroup>
 
 </Project>
