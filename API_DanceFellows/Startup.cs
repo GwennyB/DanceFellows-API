@@ -36,11 +36,11 @@ namespace API_DanceFellows
 
             // TODO: Update connection to Prod
             services.AddDbContext<API_DanceFellowsDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("ProductionConnection")));
 
             services.AddScoped<ICompetitorManager, CompetitorManagementService>();
             //services.AddScoped<IEventManager, EventManagementService>();
-            services.AddScoped<ICompetitionManager, CompetitionManagementService>();
+            //services.AddScoped<ICompetitionManager, CompetitionManagementService>();
             services.AddScoped<IResultManager, ResultManagementService>();
             //services.AddScoped<ISeriesManager, SeriesManagementService>();
         }

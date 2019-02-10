@@ -59,13 +59,13 @@ namespace API_DanceFellows.Models.Services
         {
             //await DumpCompetitorsTable();
             int count = 0;
-            for (int i = 1; i < 18500; i += 250)
+            //for (int i = 1; i < 18500; i += 250)
+            //{
+            //    GetExternalData(i, i + 249);
+            //}
+            for (int i = 6000; i < 7250; i += 250)
             {
-                GetExternalData(i, i + 249);
-            }
-            for (int i = 1; i < 18500; i += 250)
-            {
-                count += await RefreshCompetitorsTable(i, i + 250);
+                count += await RefreshCompetitorsTable(i+1, i + 250);
             }
             return count;
         }
@@ -206,6 +206,7 @@ namespace API_DanceFellows.Models.Services
                             await UpdateCompetitor(query);
                         }
 
+                        ReadOnlyContext.SaveChanges();
 
                     }
                     catch (Exception)
@@ -215,7 +216,6 @@ namespace API_DanceFellows.Models.Services
 
                     count++;
                 }
-                ReadOnlyContext.SaveChanges();
 
             }
             return count;

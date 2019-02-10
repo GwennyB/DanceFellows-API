@@ -14,28 +14,28 @@ namespace API_DanceFellows.Models.Services
         /// <summary>
         /// Standard setup for repository design pattern and dependency injection - see CompetitorManagementService for a bit more detail
         /// </summary>
-        private API_DanceFellowsDbContext ReadOnlyContext { get; }
-        public CompetitionManagementService(API_DanceFellowsDbContext context)
-        {
-            ReadOnlyContext = context;
-        }
+        //private API_DanceFellowsDbContext ReadOnlyContext { get; }
+        //public CompetitionManagementService(API_DanceFellowsDbContext context)
+        //{
+        //    ReadOnlyContext = context;
+        //}
 
         /// <summary>
         /// Creates an instance of a competition assocated with an event in a series to the appropriate table in the database.
         /// </summary>
         /// <param name="competition">Competition to be added into the database</param>
         /// <returns>An asynchronous task that clears once complete.</returns>
-        public async Task CreateCompetition(EventCompetition competition)
-        {
-            if (competition != null)
-            {
-                if (await GetCompetition(competition.ID) == null)
-                {
-                    ReadOnlyContext.EventCompetitions.Add(competition);
-                    await ReadOnlyContext.SaveChangesAsync();
-                }
-            }
-        }
+        //public async Task CreateCompetition(EventCompetition competition)
+        //{
+        //    if (competition != null)
+        //    {
+        //        if (await GetCompetition(competition.ID) == null)
+        //        {
+        //            ReadOnlyContext.EventCompetitions.Add(competition);
+        //            await ReadOnlyContext.SaveChangesAsync();
+        //        }
+        //    }
+        //}
 
         /// <summary>
         /// Gets a specific competition, given an event, the type of competition, and the level of the competition.
@@ -44,10 +44,10 @@ namespace API_DanceFellows.Models.Services
         /// <param name="compType">The type of competition being retrieved.</param>
         /// <param name="level">The level of competition being retrieved.</param>
         /// <returns>If it exists, the first competition matching the parameteres entered.</returns>
-        private async Task<EventCompetition> GetCompetition(int id)
-        {
-            return await ReadOnlyContext.EventCompetitions.FirstOrDefaultAsync(comp => comp.ID == id);
-        }
+        //private async Task<EventCompetition> GetCompetition(int id)
+        //{
+        //    return await ReadOnlyContext.EventCompetitions.FirstOrDefaultAsync(comp => comp.ID == id);
+        //}
 
 
 

@@ -9,7 +9,7 @@ namespace API_DanceFellows.Models.Interfaces
     public interface ICompetitionManager
     {
         //Create a new competition
-        Task CreateCompetition(EventCompetition competition);
+        //Task CreateCompetition(EventCompetition competition);
 
 
 

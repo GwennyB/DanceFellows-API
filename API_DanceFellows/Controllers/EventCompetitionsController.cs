@@ -18,23 +18,23 @@ namespace API_DanceFellows.Controllers
 
 
 
-        /// <summary>
-        /// Creates a new competition in an event with the provided ID, using the provided competition type and level.
-        /// </summary>
-        /// <param name="eventCompetition">The new competition to be created.</param>
-        /// <returns>The ID of the competition, or null if the competition data passed in was invalid.</returns>
-        [HttpPost]
-        public async Task<int?> Create([Bind("EventID, CompType, Level")] EventCompetition eventCompetition)
-        {
-            if (ModelState.IsValid)
-            {
-                Response.StatusCode = 200;
-                await _context.CreateCompetition(eventCompetition);
-                return eventCompetition.ID;
-            }
-            Response.StatusCode = 400;
-            return null;
-        }
+        ///// <summary>
+        ///// Creates a new competition in an event with the provided ID, using the provided competition type and level.
+        ///// </summary>
+        ///// <param name="eventCompetition">The new competition to be created.</param>
+        ///// <returns>The ID of the competition, or null if the competition data passed in was invalid.</returns>
+        //[HttpPost]
+        //public async Task<int?> Create([Bind("EventID, CompType, Level")] EventCompetition eventCompetition)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        Response.StatusCode = 200;
+        //        await _context.CreateCompetition(eventCompetition);
+        //        return eventCompetition.ID;
+        //    }
+        //    Response.StatusCode = 400;
+        //    return null;
+        //}
 
 
 
