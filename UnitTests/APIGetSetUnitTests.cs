@@ -268,5 +268,45 @@ namespace API_UnitTests
             result.CompetitorID = 1;
             Assert.True(result.CompetitorID == 1);
         }
+        [Fact]
+        public void CanGetCompetitorInResult()
+        {
+            Result result = new Result();
+            Competitor competitor = new Competitor();
+            competitor.ID = 1;
+            result.Competitor = competitor;
+            Assert.True(result.Competitor.ID == 1);
+        }
+        [Fact]
+        public void CanSetCompetitorInResult()
+        {
+            Result result = new Result();
+            Competitor competitor = new Competitor();
+            competitor.ID = 2;
+            result.Competitor = competitor;
+            competitor.ID = 1;
+            result.Competitor = competitor;
+            Assert.True(result.Competitor.ID == 1);
+        }
+        [Fact]
+        public void CanGetEventCompetitionInResult()
+        {
+            Result result = new Result();
+            EventCompetition eventCompetition = new EventCompetition();
+            eventCompetition.ID = 1;
+            result.EventCompetition = eventCompetition;
+            Assert.True(result.EventCompetition.ID == 1);
+        }
+        [Fact]
+        public void CanSetEventCompetitionInResult()
+        {
+            Result result = new Result();
+            EventCompetition eventCompetition = new EventCompetition();
+            eventCompetition.ID = 2;
+            result.EventCompetition = eventCompetition;
+            eventCompetition.ID = 1;
+            result.EventCompetition = eventCompetition;
+            Assert.True(result.EventCompetition.ID == 1);
+        }
     }
 }
