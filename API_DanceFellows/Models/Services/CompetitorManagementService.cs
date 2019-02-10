@@ -59,10 +59,13 @@ namespace API_DanceFellows.Models.Services
         {
             //await DumpCompetitorsTable();
             int count = 0;
-            for (int i = 0; i < 18500; i += 250)
+            for (int i = 1; i < 18500; i += 250)
             {
-                //GetExternalData(i + 1, i + 250);
-                count += await RefreshCompetitorsTable(i + 1, i + 250);
+                GetExternalData(i, i + 249);
+            }
+            for (int i = 1; i < 18500; i += 250)
+            {
+                count += await RefreshCompetitorsTable(i, i + 250);
             }
             return count;
         }
@@ -120,7 +123,7 @@ namespace API_DanceFellows.Models.Services
                 using (StreamWriter streamWriter = new StreamWriter($"{_filepath}_{start}-{end}.csv"))
                 {
                     string dancer = "";
-                    for (int i = start; i < end; i++)
+                    for (int i = start; i <= end; i++)
                     {
                         dancer = GetDancer(i);
                         if (dancer != "")
@@ -212,6 +215,8 @@ namespace API_DanceFellows.Models.Services
 
                     count++;
                 }
+                ReadOnlyContext.SaveChanges();
+
             }
             return count;
         }
@@ -270,8 +275,7 @@ namespace API_DanceFellows.Models.Services
             Competitor compExists = await ReadOnlyContext.Competitors.FirstOrDefaultAsync(competitor => competitor.ID == comp.ID);
             if (compExists != null)
             {
-                await Task.Run(() => ReadOnlyContext.Competitors.Update(comp));
-                await Task.Run(() => ReadOnlyContext.SaveChanges());
+                ReadOnlyContext.Competitors.Update(comp);
 
             }
         }

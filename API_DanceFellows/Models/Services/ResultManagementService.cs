@@ -39,6 +39,7 @@ namespace API_DanceFellows.Models.Services
             result.EventCompetition = d;
             result.EventCompetitionID = d.ID;
             result.Role = (Role)((int)compreg["Role"]);
+            result.Competitor = e;
             result.Placement = (Placement)((int)compreg["Placement"]);
             result.ScoreChief = (int)compreg["ChiefJudgeScore"];
             result.ScoreOne = (int)compreg["JudgeOneScore"];
@@ -84,6 +85,13 @@ namespace API_DanceFellows.Models.Services
                 {
                     var item = await ReadOnlyContext.Results.FirstOrDefaultAsync(r => r.CompetitorID == result.CompetitorID && r.EventCompetitionID == result.EventCompetitionID);
                     item.Placement = result.Placement;
+                    item.ScoreChief = result.ScoreChief;
+                    item.ScoreOne = result.ScoreOne;
+                    item.ScoreTwo = result.ScoreTwo;
+                    item.ScoreThree = result.ScoreThree;
+                    item.ScoreFour = result.ScoreFour;
+                    item.ScoreFive = result.ScoreFive;
+                    item.ScoreSix = result.ScoreSix;
                     ReadOnlyContext.Results.Update(item);
                     await ReadOnlyContext.SaveChangesAsync();
                     updated = await ReadOnlyContext.Results.FirstOrDefaultAsync(r =>

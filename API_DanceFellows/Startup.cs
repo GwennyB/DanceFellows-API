@@ -39,10 +39,10 @@ namespace API_DanceFellows
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped<ICompetitorManager, CompetitorManagementService>();
-            services.AddScoped<IEventManager, EventManagementService>();
+            //services.AddScoped<IEventManager, EventManagementService>();
             services.AddScoped<ICompetitionManager, CompetitionManagementService>();
             services.AddScoped<IResultManager, ResultManagementService>();
-            services.AddScoped<ISeriesManager, SeriesManagementService>();
+            //services.AddScoped<ISeriesManager, SeriesManagementService>();
         }
 
         /// <summary>
