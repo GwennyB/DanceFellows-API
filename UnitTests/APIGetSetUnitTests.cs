@@ -308,5 +308,113 @@ namespace API_UnitTests
             result.EventCompetition = eventCompetition;
             Assert.True(result.EventCompetition.ID == 1);
         }
+        //Event
+        [Fact]
+        public void CanGetIDInEvent()
+        {
+            Event newEvent = new Event();
+            newEvent.ID = 1;
+            Assert.True(newEvent.ID == 1);
+        }
+        [Fact]
+        public void CanSetIDInEvent()
+        {
+            Event newEvent = new Event();
+            newEvent.ID = 2;
+            newEvent.ID = 1;
+            Assert.True(newEvent.ID == 1);
+        }
+        [Fact]
+        public void CanGetYearInEvent()
+        {
+            Event newEvent = new Event();
+            newEvent.Year = 1;
+            Assert.True(newEvent.Year == 1);
+        }
+        [Fact]
+        public void CanSetYearInEvent()
+        {
+            Event newEvent = new Event();
+            newEvent.Year = 2;
+            newEvent.Year = 1;
+            Assert.True(newEvent.Year == 1);
+        }
+        [Fact]
+        public void CanGetDirectorInEvent()
+        {
+            Event newEvent = new Event();
+            newEvent.Director = "Foo";
+            Assert.True(newEvent.Director == "Foo");
+        }
+        [Fact]
+        public void CanSetDirectorInEvent()
+        {
+            Event newEvent = new Event();
+            newEvent.Director = "Bar";
+            newEvent.Director = "Foo";
+            Assert.True(newEvent.Director == "Foo");
+        }
+        [Fact]
+        public void CanGetSeriesIDInEvent()
+        {
+            Event newEvent = new Event();
+            newEvent.SeriesID = 1;
+            Assert.True(newEvent.SeriesID == 1);
+        }
+        [Fact]
+        public void CanSetSeriesIDInEvent()
+        {
+            Event newEvent = new Event();
+            newEvent.SeriesID = 2;
+            newEvent.SeriesID = 1;
+            Assert.True(newEvent.SeriesID == 1);
+        }
+        [Fact]
+        public void CanGetEventCompetitionsFromEvent()
+        {
+            Event newEvent = new Event();
+            EventCompetition eventCompetition = new EventCompetition();
+            eventCompetition.ID = 1;
+            List<EventCompetition> eventCompetitions = new List<EventCompetition>();
+            eventCompetitions.Add(eventCompetition);
+            newEvent.EventCompetitions = eventCompetitions;
+            Assert.True(newEvent.EventCompetitions.Contains(eventCompetition));
+        }
+        //bit of a mess here, tough to "update" something in a list much less a collection
+        [Fact]
+        public void CanSetEventCompetitionsFromEvent()
+        {
+            Event newEvent = new Event();
+            EventCompetition eventCompetition = new EventCompetition();
+            eventCompetition.ID = 1;
+            List<EventCompetition> eventCompetitions = new List<EventCompetition>();
+            eventCompetitions.Add(eventCompetition);
+            newEvent.EventCompetitions = eventCompetitions;
+            eventCompetition.ID = 2;
+            eventCompetitions.Remove(eventCompetition);
+            eventCompetitions.Add(eventCompetition);
+            newEvent.EventCompetitions = eventCompetitions;
+            Assert.True(newEvent.EventCompetitions.Contains(eventCompetition));
+        }
+        [Fact]
+        public void CanGetSeriesFromEvent()
+        {
+            Event newEvent = new Event();
+            Series series = new Series();
+            series.ID = 1;
+            newEvent.Series = series;
+            Assert.True(newEvent.Series.ID == 1);
+        }
+        [Fact]
+        public void CanSetSeriesInEvent()
+        {
+            Event newEvent = new Event();
+            Series series = new Series();
+            series.ID = 2;
+            newEvent.Series = series;
+            series.ID = 1;
+            newEvent.Series = series;
+            Assert.True(newEvent.Series.ID == 1);
+        }
     }
 }
