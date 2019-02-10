@@ -24,6 +24,8 @@ namespace API_DanceFellows.Controllers
         /// </summary>
         /// <returns> Hello World </returns>
         [HttpGet]
+        [Route("")]
+        [Route("Index")]
         [Route("index.html")]
         public ActionResult<string> Index()
         {

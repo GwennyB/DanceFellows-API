@@ -91,7 +91,7 @@ namespace API_DanceFellows
             {
                 routes.MapRoute(
                 name: "default",
-                template: "{controller}/{action}/{id?}");
+                template: "{controller=Competitors}/{action=Index}/{id?}");
             });
 
             // use Swagger for route documentation
