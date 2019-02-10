@@ -416,5 +416,111 @@ namespace API_UnitTests
             newEvent.Series = series;
             Assert.True(newEvent.Series.ID == 1);
         }
+        //EventCompetition
+        [Fact]
+        public void CanGetIDInEventCompetition()
+        {
+            EventCompetition eventCompetition = new EventCompetition();
+            eventCompetition.ID = 1;
+            Assert.True(eventCompetition.ID == 1);
+        }
+        [Fact]
+        public void CanSetIDInEventCompetition()
+        {
+            EventCompetition eventCompetition = new EventCompetition();
+            eventCompetition.ID = 2;
+            eventCompetition.ID = 1;
+            Assert.True(eventCompetition.ID == 1);
+        }
+        [Fact]
+        public void CanGetEventIDInEventCompetition()
+        {
+            EventCompetition eventCompetition = new EventCompetition();
+            eventCompetition.EventID = 1;
+            Assert.True(eventCompetition.EventID == 1);
+        }
+        [Fact]
+        public void CanSetEventIDInEventCompetition()
+        {
+            EventCompetition eventCompetition = new EventCompetition();
+            eventCompetition.EventID = 2;
+            eventCompetition.EventID = 1;
+            Assert.True(eventCompetition.EventID == 1);
+        }
+        [Fact]
+        public void CanGetCompTypeInEventCompetition()
+        {
+            EventCompetition eventCompetition = new EventCompetition();
+            eventCompetition.CompType = CompType.Classic;
+            Assert.True(eventCompetition.CompType == CompType.Classic);
+        }
+        [Fact]
+        public void CanSetCompTypeInEventCompetition()
+        {
+            EventCompetition eventCompetition = new EventCompetition();
+            eventCompetition.CompType = CompType.JackAndJill;
+            eventCompetition.CompType = CompType.Classic;
+            Assert.True(eventCompetition.CompType == CompType.Classic);
+        }
+        [Fact]
+        public void CanGetLevelInEventCompetition()
+        {
+            EventCompetition eventCompetition = new EventCompetition();
+            eventCompetition.Level = Level.Newcomer;
+            Assert.True(eventCompetition.Level == Level.Newcomer);
+        }
+        [Fact]
+        public void CanSetLevelInEventCompetition()
+        {
+            EventCompetition eventCompetition = new EventCompetition();
+            eventCompetition.Level = Level.AllStar;
+            eventCompetition.Level = Level.Newcomer;
+            Assert.True(eventCompetition.Level == Level.Newcomer);
+        }
+        [Fact]
+        public void CanGetEventFromEventCompetition()
+        {
+            EventCompetition eventCompetition = new EventCompetition();
+            Event newEvent = new Event();
+            newEvent.ID = 1;
+            eventCompetition.Event = newEvent;
+            Assert.True(eventCompetition.Event.ID == 1);
+        }
+        [Fact]
+        public void CanSetEventInEventCompetition()
+        {
+            EventCompetition eventCompetition = new EventCompetition();
+            Event newEvent = new Event();
+            newEvent.ID = 2;
+            eventCompetition.Event = newEvent;
+            newEvent.ID = 1;
+            eventCompetition.Event = newEvent;
+            Assert.True(eventCompetition.Event.ID == 1);
+        }
+        [Fact]
+        public void CanGetResultsFromEventCompetition()
+        {
+            EventCompetition eventCompetition = new EventCompetition();
+            Result result = new Result();
+            result.CompetitorID = 1;
+            List<Result> results = new List<Result>();
+            results.Add(result);
+            eventCompetition.Results = results;
+            Assert.True(eventCompetition.Results.Contains(result));
+        }
+        [Fact]
+        public void CanSetResultsInEventCompetition()
+        {
+            EventCompetition eventCompetition = new EventCompetition();
+            Result result = new Result();
+            List<Result> results = new List<Result>();
+            result.CompetitorID = 1;
+            results.Add(result);
+            eventCompetition.Results = results;
+            result.CompetitorID = 2;
+            results.Add(result);
+            eventCompetition.Results = results;
+            Assert.True(eventCompetition.Results.Contains(result));
+        }
     }
 }
