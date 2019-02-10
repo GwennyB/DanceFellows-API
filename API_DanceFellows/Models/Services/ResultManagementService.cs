@@ -51,6 +51,7 @@ namespace API_DanceFellows.Models.Services
             return result;
         }
 
+
         /// <summary>
         /// Takes the provided result (of a competitor in a competition at an event in a series...) and adds it to the appropriate table in the database.
         /// </summary>

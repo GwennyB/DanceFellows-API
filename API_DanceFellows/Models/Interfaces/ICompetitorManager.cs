@@ -11,7 +11,6 @@ namespace API_DanceFellows.Models.Interfaces
         //Get a competitor by internal ID
         Task<Competitor> GetCompetitor(int id);
 
-
     }
 }
 
