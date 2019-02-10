@@ -24,6 +24,7 @@ namespace API_DanceFellows.Controllers
         /// </summary>
         /// <returns> Hello World </returns>
         [HttpGet]
+        [ApiExplorerSettings(IgnoreApi = true)]
         [Route("")]
         [Route("Index")]
         [Route("index.html")]
@@ -38,8 +39,6 @@ namespace API_DanceFellows.Controllers
         /// </summary>
         /// <returns>If a competitor with the given id exists, return the competitor object with a 200 status code. If it does not, return a null object with a 400 status code.</returns>
         [HttpGet("{id}")]
-        [Route("Competitors/GetCompetitor")]
-        // removed ("id") to make this work
         public async Task<Competitor> GetCompetitor(int id)
         {
             Competitor competitor = await _context.GetCompetitor(id);
