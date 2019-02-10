@@ -81,23 +81,26 @@ namespace API_DanceFellows
                 app.UseHsts();
             }
 
+            // serve static files (needed?)
             app.UseStaticFiles();
 
+            /// <summary>
+            /// defines routing template
+            /// </summary>
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                name: "default",
+                template: "{controller}/{action}/{id?}");
+            });
+
+            // use Swagger for route documentation
             app.UseSwagger();
             app.UseSwaggerUi3();
 
 
             app.UseHttpsRedirection();
             app.UseMvc();
-            /// <summary>
-            /// defines default route - defn in HomeController
-            /// </summary>
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                name: "default",
-                template: "{controller=Competitors}/{action=Index}/{id?}");
-            });
         }
     }
 }

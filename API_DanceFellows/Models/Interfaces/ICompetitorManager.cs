@@ -11,31 +11,6 @@ namespace API_DanceFellows.Models.Interfaces
         //Get a competitor by internal ID
         Task<Competitor> GetCompetitor(int id);
 
-        // Competitors table refresh
-        Task<int> RefreshAll();
-
-
-
-        // TODO: kill all below here before submit to save testing?
-
-        ////Create a new competitor
-        //Task CreateCompetitor(Competitor competitor);
-        
-        ////Get all competitors
-        //Task<IEnumerable<Competitor>> GetAllCompetitors();
-
-        ////Update a competitor by id
-        //Task UpdateCompetitor(Competitor competitor);
-
-        ////Get a competitor by internal ID
-        //Task DeleteCompetitor(int id);
-
-        ////Save changes
-        //Task SaveThis();
-
-
-
-
 
     }
 }

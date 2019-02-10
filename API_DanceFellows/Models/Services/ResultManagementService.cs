@@ -127,8 +127,7 @@ namespace API_DanceFellows.Models.Services
             return await ReadOnlyContext.Results.FirstOrDefaultAsync(res => res.EventCompetitionID == eventCompetitionID && res.CompetitorID == competitorId);
         }
 
-
-
+        
         /// <summary>
         /// HELPER: Get a single competition using comp parameters
         /// </summary>
@@ -150,29 +149,6 @@ namespace API_DanceFellows.Models.Services
         {
             return await ReadOnlyContext.Competitors.FirstOrDefaultAsync(c => c.WSDC_ID == id);
         }
-
-
-
-
-
-
-        // We don't need anything below this point for MVP... although it might be useful for stretch goals, so don't delete them!
-
-
-
-        ///// <summary>
-        ///// Returns all the results currently existing from the table.
-        ///// </summary>
-        ///// <returns>A list of results.</returns>
-        //public async Task<List<Result>> GetAllResults()
-        //{
-        //    return await ReadOnlyContext.Results.ToListAsync();
-        //}
-
-
-
-
-
 
 
 
