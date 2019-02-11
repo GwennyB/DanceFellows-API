@@ -38,6 +38,7 @@ This route creates a new registration record linking a competitor to a specific 
     - "JudgeFourScore" <int> - raw score  
     - "JudgeFiveScore" <int> - raw score  
     - "JudgeSixScore" <int> - raw score  
+     
   ![Create Competition Registration/Score Record](assets/Create-Result.PNG)  
 
 ### PUT /Results/Update
@@ -48,11 +49,12 @@ This route deletes an existing registration record linking a competitor to a spe
 
 ## Architecture
 This simplified ASP.NET Core API is built atop a SQL database (see details and schema below) seeded with WSDC-official competitor data (collected from https://points.worldsdc.com/lookup/find):
-![POST points.worldsdc.com/lookup/find?num=8717](assets/wsdc-POST-return.PNG)
-
+![POST points.worldsdc.com/lookup/find?num=8717](assets/wsdc-POST-return.PNG)  
+  
 This API relies on Entity Framework Core for object relational mapping (ie - deriving a database context from object models), which enables easy integration of object-oriented programming with data management tasks. The DB transactional features are isolated to the Competitors and Results tables - each has an associated controller (with routes described above).
-
-So that future enhancements are less invasive (with respect to the codebase), this API makes use of the repository design pattern to decouple the data source and the manipulation logic. This is achieved by use of controller interfaces that explicitly list DB transactional features and associated services that handle those transactions on behalf of the controllers, acting as a proxy DB context specifically for that controller's use.  Should new tables, features, or behaviors be needed, or should the DB get replaced or migrated to a new technology, the development work will isolated to those interface points (instead of throughout the code base, as is the case for tightly coupled designs).
+  
+So that future enhancements are less invasive (with respect to the codebase), this API makes use of the repository design pattern to decouple the data source and the manipulation logic. This is achieved by use of controller interfaces that explicitly list DB transactional features and associated services that handle those transactions on behalf of the controllers, acting as a proxy DB context specifically for that controller's use.  Should new tables, features, or behaviors be needed, or should the DB get replaced or migrated to a new technology, the development work will isolated to those interface points (instead of throughout the code base, as is the case for tightly coupled designs).  
+  
 ![Db Schema](assets/schema.PNG)
 
 
@@ -72,8 +74,8 @@ The database is built with the intent of enabling future modular enhancements. T
 
 ## Credit
 Dance Fellows has been a collaborative effort by:
-  Andrew Quamme https://github.com/andrewquamme
-  Blaise Clark https://github.com/Dervival
-  Jason Hiskey https://github.com/jlhiskey
-  Gwen Zubatch https://github.com/GwennyB
+  Andrew Quamme https://github.com/andrewquamme  
+  Blaise Clark https://github.com/Dervival  
+  Jason Hiskey https://github.com/jlhiskey  
+  Gwen Zubatch https://github.com/GwennyB  
 
