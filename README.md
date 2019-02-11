@@ -79,3 +79,5 @@ Dance Fellows has been a collaborative effort by:
   Jason Hiskey https://github.com/jlhiskey  
   Gwen Zubatch https://github.com/GwennyB  
 
+The Dance Fellows Client was designed to be used with this API:  
+https://github.com/GwennyB/DanceFellows-Client
