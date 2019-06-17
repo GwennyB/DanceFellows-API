@@ -1,4 +1,3 @@
-## *** NO LONGER DEPLOYED ON AZURE ***  
 
 # Dance Fellows (API)
 
@@ -8,7 +7,7 @@ This application provides an access point for official World Swing Dance Council
 
 ## Deployed API
 https://dancefellowsapi.azurewebsites.net/
-
+## *** NO LONGER DEPLOYED ON AZURE ***  
 
 ## Routes
 This application uses NSwag to expose routes and models. Outputs are shown below - they can be directly accessed by visiting the SwaggerUI at https://localhost:44313/swagger/index.html.
@@ -57,7 +56,7 @@ This API relies on Entity Framework Core for object relational mapping (ie - der
   
 So that future enhancements are less invasive (with respect to the codebase), this API makes use of the repository design pattern to decouple the data source and the manipulation logic. This is achieved by use of controller interfaces that explicitly list DB transactional features and associated services that handle those transactions on behalf of the controllers, acting as a proxy DB context specifically for that controller's use.  Should new tables, features, or behaviors be needed, or should the DB get replaced or migrated to a new technology, the development work will isolated to those interface points (instead of throughout the code base, as is the case for tightly coupled designs).  
   
-![Db Schema](assets/schema.PNG)
+![Db Schema](assets/schema.png)
 
 
 ## Testing
